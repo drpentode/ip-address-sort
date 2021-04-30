@@ -34,6 +34,10 @@ class IpAddressSort
         cnts = @ip_ranking[cnt - 1]
         cnts.delete(ip_address)
         @ip_ranking[cnt - 1] = cnts
+
+        if @ip_ranking[cnt - 1].length == 0
+          @ip_ranking.delete(cnt - 1)
+        end
       end
     
       @ip_ranking[cnt].push(ip_address)
@@ -41,7 +45,7 @@ class IpAddressSort
   end
 
   def top100
-    sorted_rankings = Hash[@ip_ranking.sort_by { |k, v| k }]
+    sorted_rankings = Hash[@ip_ranking.sort_by { |k, v| -k }]
   end
 
   def clear
@@ -62,47 +66,48 @@ random_ip_addresses = []
   random_ip_addresses.push("#{ip_1}.#{ip_2}.#{ip_3}.#{ip_4}")
 end
 
-10.times do
-  random_ip_addresses.push("10.10.10.10")
-end
+100.times do
+  10.times do
+    random_ip_addresses.push("10.10.10.10")
+  end
 
-9.times do
-  random_ip_addresses.push("9.9.9.9")
-end
+  9.times do
+    random_ip_addresses.push("9.9.9.9")
+  end
 
-8.times do
-  random_ip_addresses.push("8.8.8.8")
-end
+  8.times do
+    random_ip_addresses.push("8.8.8.8")
+  end
 
-7.times do
-  random_ip_addresses.push("7.7.7.7")
-end
+  7.times do
+    random_ip_addresses.push("7.7.7.7")
+  end
 
-6.times do
-  random_ip_addresses.push("6.6.6.6")
-end
+  6.times do
+    random_ip_addresses.push("6.6.6.6")
+  end
 
-5.times do
-  random_ip_addresses.push("5.5.5.5")
-end
+  5.times do
+    random_ip_addresses.push("5.5.5.5")
+  end
 
-4.times do
-  random_ip_addresses.push("4.4.4.4")
-end
+  4.times do
+    random_ip_addresses.push("4.4.4.4")
+  end
 
-3.times do
-  random_ip_addresses.push("3.3.3.3")
-end
+  3.times do
+    random_ip_addresses.push("3.3.3.3")
+  end
 
-2.times do
-  random_ip_addresses.push("2.2.2.2")
+  2.times do
+    random_ip_addresses.push("2.2.2.2")
+  end
 end
 
 random_ip_addresses.each do |ip|
   ip_sorter.request_handled(ip)
 end
 
-puts ip_sorter.ip_addresses.inspect
 puts ip_sorter.top100.inspect
 
 ip_sorter.clear
