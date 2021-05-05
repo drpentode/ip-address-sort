@@ -50,6 +50,7 @@ class IpAddressSort
 
   def clear
     @ip_ranking = {}
+    @ip_addresses = {}
   end
 end
 
