@@ -16,12 +16,6 @@ I would build an actual web service. If this was a
 real-world example, I would also look at multi-threading so that each request could
 be handled by its own thread, thus not blocking any attempts to save an IP address.
 
-### What is the runtime complexity of each function?
-
-1. `request_handled` - O(n)
-2. `top100` - O(n log n)
-3. `clear` - O(1)
-
 ### How does your code work?
 
 I chose to build a hash with this structure:
